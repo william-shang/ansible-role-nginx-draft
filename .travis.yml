@@ -2,10 +2,8 @@
 language: python
 python: "2.7"
 
-- name: Install three pip packages: ansible, ansible-lint, and yamllint
-  install: pip install ansible ansible-lint yamllint
+install: pip install ansible ansible-lint yamllint
 
-- name: Run two scripts: ansible-lint ./ and yamllint ./
-  script: 
-    - ansible-lint ./
-    - yamllint ./
+script: 
+  - ansible-lint ./
+  - yamllint ./
