@@ -6,4 +6,4 @@ install: pip install ansible ansible-lint yamllint
 
 script: 
   - ansible-lint ./
-#  - yamllint ./
+  - yamllint ./
