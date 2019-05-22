@@ -4,7 +4,6 @@
   rpm_key:
     key: "{{ nginx_signing_key }}"
 
-
 - name: add nginx repository
   become: true
   yum_repository:
@@ -41,3 +40,17 @@
       </body>
       </html>
     dest: /usr/share/nginx/html/index.html
+
+- name: add block of files in 
+# Use blockinfile to add the follow content to /etc/nginx/conf.d/default.conf
+  become: true
+  blockinfile:
+    path: /etc/nginx/conf.d/default.conf
+    insertbefore: "#error_page  404              /404.html;"
+    block: |
+      location /nginx_status {
+          stub_status;
+          allow 127.0.0.1;
+          deny all;
+      }
+
