@@ -3,5 +3,8 @@ language: python
 python: "2.7"
 
 install: pip install ansible
+install: pip install ansible-lint
+install: pip install yamllint
 
-script: ansible-playbook ansible/foreman.yml --syntax-check
+script: ansible-playbook ansible-lint ./ --syntax-check
+script: ansible-playbook yamllint ./ --syntax-check
