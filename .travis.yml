@@ -4,5 +4,5 @@ python: "2.7"
 
 install: pip install ansible ansible-lint yamllint
 
-script: ansible-playbook ansible-lint ./
-script: ansible-playbook yamllint ./
+script: ansible-lint ./
+script: yamllint ./
