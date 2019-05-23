@@ -46,10 +46,10 @@
   become: true
   blockinfile:
     path: /etc/nginx/conf.d/default.conf
-    insertbefore: "#error_page  404              /404.html;"
+    insertbefore: "    #error_page  404              /404.html;"
     block: |
-      location /nginx_status {
-          stub_status;
-          allow 127.0.0.1;
-          deny all;
-      }
+          location /nginx_status \{
+              stub_status;
+              allow 127.0.0.1;
+              deny all;
+          \}
