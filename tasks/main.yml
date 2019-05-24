@@ -53,3 +53,5 @@
               allow 127.0.0.1;
               deny all;
           \}
+- name: Include exporter.yml tasks
+  include_tasks: 'exporter.yml'
