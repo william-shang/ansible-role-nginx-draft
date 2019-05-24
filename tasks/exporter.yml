@@ -4,17 +4,17 @@
   group:
     name: nginx-exp
     state: present
-    system: yes
+    system: true
 - name: Use user to create nginx-exp system user, a member of nginx-exp group
   become: true
   user:
     name: nginx-exp
-    system: yes
+    system: true
     state: present
     group: nginx-exp
 - name: Use get_url to download nginx-exporter.
   become: true
-  get_url: https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v0.3.0/nginx-prometheus-exporter-0.3.0-linux-amd64.tar.gz
+  get_url: https://github.com/nginxinc/\nginx-prometheus-exporter/releases/download/v0.3.0/\nginx-prometheus-exporter-0.3.0-linux-amd64.tar.gz
   dest: ~/Downloads/nginx-prometheus-exporter-0.3.0-linux-amd64.tar.gz
 - name: Use unarchive to unpack the downloaded exporter
   become: true
@@ -31,5 +31,4 @@
   systemd:
     state: started
     name: nginx_exporter
-    enabled: yes
-    
+    enabled: true
