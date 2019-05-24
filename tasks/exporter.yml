@@ -1,0 +1,35 @@
+---
+- name: Use group to create nginx-exp system group
+  become: true
+  group:
+    name: nginx-exp
+    state: present
+    system: yes
+- name: Use user to create nginx-exp system user, a member of nginx-exp group
+  become: true
+  user:
+    name: nginx-exp
+    system: yes
+    state: present
+    group: nginx-exp
+- name: Use get_url to download nginx-exporter.
+  become: true
+  get_url: https://github.com/nginxinc/nginx-prometheus-exporter/releases/download/v0.3.0/nginx-prometheus-exporter-0.3.0-linux-amd64.tar.gz
+  dest: ~/Downloads/nginx-prometheus-exporter-0.3.0-linux-amd64.tar.gz
+- name: Use unarchive to unpack the downloaded exporter
+  become: true
+  unarchive:
+    src: ~/Downloads/nginx-prometheus-exporter-0.3.0-linux-amd64.tar.gz
+    dest: ~/Downloads/nginx-prometheus-exporter-0.3.0-linux-amd64/
+- name: Use template to create /etc/systemd/system/nginx_exporter.service file
+  become: true
+  template:
+    src: template/nginx_exporter.service
+    dest: /etc/systemd/system/nginx_exporter.service
+- name: Use systemd to start and enable the nginx_exporter service.
+  become: true
+  systemd:
+    state: started
+    name: nginx_exporter
+    enabled: yes
+    

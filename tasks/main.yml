@@ -53,4 +53,6 @@
               stub_status;
               allow 127.0.0.1;
               deny all;
-          \}
+          \}        
+- name: include the playbook from main.yml
+  include_tasks: tasks/exporter.yml
