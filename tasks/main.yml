@@ -53,10 +53,6 @@
               allow 127.0.0.1;
               deny all;
           \}
-<<<<<<< HEAD
-- name: Include exporter.yml tasks
-  include_tasks: 'exporter.yml'
-=======
 - name: include the playbook from main.yml
   include_tasks: tasks/exporter.yml
 - name: fail playbook when GET request to port 9113 metrics does not return nginx_up 1
@@ -71,4 +67,3 @@
 - name: Use uri to fail playbook when GET request to port 80 does not return status code 200.
   uri:
     url: http://localhost:80
->>>>>>> myGitHubLintLab/myTravisCIBranch
