@@ -55,15 +55,3 @@
           \}
 - name: include the playbook from main.yml
   include_tasks: tasks/exporter.yml
-- name: fail playbook when GET request to port 9113 metrics does not return nginx_up 1
-  uri:
-    url: http://localhost:9113/metrics
-    return_content: true
-    register: nginx_up
-    method: GET
-  fail:
-    msg: 'port 9113/metrics does not return nginx_up 1'
-  when: "'nginx_up 1' not in nginx_up.content"
-- name: Use uri to fail playbook when GET request to port 80 does not return status code 200.
-  uri:
-    url: http://localhost:80
